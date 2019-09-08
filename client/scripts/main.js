@@ -1,4 +1,4 @@
-const min_width = 15;
+const min_width = 12;
 const max_width = 100;
 const game_length = 3;
 
@@ -13,6 +13,7 @@ var missClick = false;
 var clickCount = 0;
 var missClickCount = 0;
 var startTime = null;
+var startTimestamp = null;
 var target = null;
 var data = null;
 var path = null;
@@ -40,6 +41,7 @@ function endGame() {
 	let xhttp = new XMLHttpRequest();
 	xhttp.open("POST", "/data", true);
 	xhttp.send(JSON.stringify(data));
+	console.log(data);
 	target = null;
 	data = null;
 	path = null;
@@ -65,13 +67,16 @@ function render() {
 }
 
 function onMouseEvent(event) {
-	if (path == null) return;
+	if (path == null) {
+		startTimestamp = event.timestamp;
+		return;
+	}
 	let canvasRect = canvas.getBoundingClientRect();
 	let x = event.clientX - canvasRect.x;
 	let y = event.clientY - canvasRect.y;
 	path.push({
 		type: event.type,
-		timestamp: event.timeStamp,
+		timestamp: event.timeStamp - startTimestamp,
 		x: x - (target.x + target.width/2),
 		y: y - (target.y + target.width/2)
 	});
