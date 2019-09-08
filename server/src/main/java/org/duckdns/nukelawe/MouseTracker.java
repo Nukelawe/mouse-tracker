@@ -13,10 +13,10 @@ import java.nio.charset.StandardCharsets;
 
 public class MouseTracker {
     public static void main(String args[]) throws IOException {
-        int port = 8080;
+        int port = Integer.parseInt(args[0]);
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
         System.out.println("server started at " + port);
-        server.createContext("/", new HttpHandler() {
+        server.createContext("/data", new HttpHandler() {
             @Override
             public void handle(HttpExchange he) throws IOException {
                 OutputStream os = he.getResponseBody();
