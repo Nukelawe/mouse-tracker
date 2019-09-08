@@ -38,7 +38,7 @@ function endGame() {
 	document.getElementById("time").innerHTML = "Time: " + (time / 1000 + missClickCount);
 	document.getElementById("missclicks").innerHTML = "Miss clicks: " + missClickCount;
 	let xhttp = new XMLHttpRequest();
-	xhttp.open("POST", "nukelawe.duckdns.org", true);
+	xhttp.open("POST", "nukelawe.duckdns.org/", true);
 	xhttp.send(JSON.stringify(data));
 	target = null;
 	data = null;
