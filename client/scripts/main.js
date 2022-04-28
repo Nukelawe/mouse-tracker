@@ -1,6 +1,6 @@
 const min_width = 12;
 const max_width = 100;
-const game_length = 3;
+const game_length = 21;
 
 var canvas = document.getElementById('canvas');
 var results = document.getElementById('results');
